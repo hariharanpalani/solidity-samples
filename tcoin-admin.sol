@@ -29,7 +29,7 @@ contract TCoin {
     string public symbol;
     uint8 public decimals;
     string public standard = "TCoin v1.0";
-    uint256 totalSupply;
+    uint256 public totalSupply;
     event Transfer(address indexed from, address indexed to, uint256 value);
     
     function TCoin(uint256 initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits) public {
@@ -69,8 +69,8 @@ contract TCoin {
 }
 
 contract TCoinNew is admined, TCoin {
-    uint256 sellPrice;
-    uint256 buyPrice;
+    uint256 public sellPrice;
+    uint256 public buyPrice;
     uint256 minBalance = 5 finney;
     
     mapping (address => bool) public frozenAccount;
@@ -78,7 +78,7 @@ contract TCoinNew is admined, TCoin {
     event FroozenFund(address target, bool status);
     
     function TCoinNew(uint initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits, address centralAdmin) 
-                        TCoin(0, tokenName, tokenSymbol, decimalUnits) public {
+                        TCoin(0, tokenName, tokenSymbol, decimalUnits) public payable {
         totalSupply = initialSupply;
         
         if(centralAdmin != 0) {
