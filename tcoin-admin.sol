@@ -91,7 +91,7 @@ contract TCoinNew is admined, TCoin {
     
     function mintToken(address target, uint256 value) public {
         balanceOf[target] =value;
-        totalSupply-=value;
+        totalSupply +=value;
         Transfer(0, this, value);
         Transfer(this, target, value);
     }
